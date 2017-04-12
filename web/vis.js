@@ -84,10 +84,11 @@ var visualize = function(data) {
               .attr("transform", "translate(" + (margin.left + width/2) + "," + (margin.top + height/2) + ")")
 
   // == Your code! :) ==
-  svg.selectAll("ewww")
-     .data(majorCount)
-     .enter()
-     .append("circle")
+  	var svgEnter = svg.selectAll("ewww")
+     				.data(majorCount)
+     				.enter();
+
+  	svgEnter.append("circle")
      .attr("radLevel", function (d, i) {
          for(var radLevel = 0; radLevel < desiredNumOfMajorCumu.length; ++radLevel) {
              if (desiredNumOfMajorCumu[radLevel] > i) {
@@ -112,4 +113,13 @@ var visualize = function(data) {
      .attr("fill", function (d,i) {
 
      })
+
+    for (var i = 6; i >= 0; i--) {
+      svg.append("ellipse")
+        .attr("cx",0)
+        .attr("cy",0)
+        .attr("rx",(width/2)*(i/6))
+        .attr("ry",(height/2)*(i/6)*6.5/6)
+        .attr("fill", "hsla(225, 100%, 50%, 0.1)");
+    }
 };
