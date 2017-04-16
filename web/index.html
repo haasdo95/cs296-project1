@@ -10,18 +10,30 @@
         min-height: 100px;
         overflow: hidden;
     }
+    .user:hover {
+        background-color: #f6ffc1;
+    }
     .user>* {
         padding-left: 20px;
         padding-right: 20px;
     }
+    #start {
+        position: absolute;
+        left: -1%;
+    }
     #end {
-        position: relative;
-        left: 88%;
+        text-align: center;
+        position: absolute;
+        right: -1%;
     }
     #chosenYear {
         position: absolute;
         top: 5px;
-        left: 500px;
+        left: 50%;
+    }
+    .prompt {
+        position: relative;
+        bottom: 5px;
     }
 </style>
 
@@ -29,71 +41,71 @@
 
 <div id="chart">
     <div class="user" id="colleges">
-        <h3>Choose Colleges</h3>
+        <h3><span class="prompt label label-lg label-info">Choose Colleges</span></h3>
         <div class="container">
             <div class="row">
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KP" class="form-check-input" type="checkbox" checked> Engineering
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KM" class="form-check-input" type="checkbox" checked> Business
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KT" class="form-check-input" type="checkbox" checked> Media
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KV" class="form-check-input" type="checkbox" checked> LAS
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LC" class="form-check-input" type="checkbox" checked> Veterinary Medicine
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KY" class="form-check-input" type="checkbox" checked> Applied Health &amp; Science
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KL" class="form-check-input" type="checkbox" checked> Agr, Consumer, &amp; Env Sci
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KN" class="form-check-input" type="checkbox" checked> Education
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KR" class="form-check-input" type="checkbox" checked> Fine &amp; Applied Arts
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KS" class="form-check-input" type="checkbox" checked> Graduate College
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LG" class="form-check-input" type="checkbox" checked> Labor &amp; Empl. Rel
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="NB" class="form-check-input" type="checkbox" checked> Provost &amp; VC Acad Affairs
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KW" class="form-check-input" type="checkbox" checked> DGS
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LN" class="form-check-input" type="checkbox" checked> Center Innov in Teach Learn
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LL" class="form-check-input" type="checkbox" checked> Social Work
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="KU" class="form-check-input" type="checkbox" checked> Law
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LP" class="form-check-input" type="checkbox" checked> Information Science
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LE" class="form-check-input" type="checkbox" checked> Aviation
                 </label>
-                <label class="form-check-label col-lg-3 col-xs-6">
+                <label class="form-check-label col-lg-3 col-sm-6 col-xs-12">
                 <input college="LM" class="form-check-input" type="checkbox" checked> Provost Academic Programs
                 </label>
             </div>
         </div>
     </div>
     <div class="user" id="years">
-        <h3>Choose Year</h3>
+        <h3><span class="prompt label label-info">Choose Year</span></h3>
         <h4 id="chosenYear">2015</h4>
 		<input id="sb" type="range" min=5 max=15 value=15>
         <span id="start">2005</span>

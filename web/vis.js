@@ -158,11 +158,13 @@ var visualize = function(data) {
      .attr("r", function () {
          return 10; // hardcode
      })
+     .transition()
      .attr("cx", function (d, i) {
          var radLevel = d3.select(this).attr("radLevel");
          var radius = (-radLevel + 6) * 70; // real distance
          return radius * Math.cos(thetaIncs[radLevel] * i);
      })
+     .transition()
      .attr("cy", function (d, i) {
          var radLevel = d3.select(this).attr("radLevel");
          var radius = (-radLevel + 5) * 70; // real distance
