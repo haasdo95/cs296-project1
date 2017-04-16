@@ -168,7 +168,7 @@ var visualize = function(data) {
          return radLevel;
      })
      .attr("r", function (d) {
-         var radius = Math.log(d.Total)*2.0;
+         var radius = Math.log2(d.Total)*1.7;
          return Math.max(radius, 5);
      })
      .attr("cx", function (d, i) {
@@ -198,7 +198,7 @@ var visualize = function(data) {
      .on('mouseover',function(d,i){
          d3.select(this).transition()
          .attr("r",function(d){
-             var radius = Math.log(d.Total)*5.0;
+             var radius = Math.log2(d.Total)*4.0;
              return Math.max(radius, 10);
          })
          .attr("fill",function(d){
@@ -210,7 +210,7 @@ var visualize = function(data) {
     .on('mouseout',function(d,i){
         d3.select(this).transition()
         .attr("r",function(d){
-            var radius = Math.log(d.Total)*2.0;
+            var radius = Math.log2(d.Total)*1.7;
             return Math.max(radius, 5);
         })
         .attr("fill",function(d){
