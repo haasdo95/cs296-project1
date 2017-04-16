@@ -1,8 +1,71 @@
 {% extends "static/templates/projectBase.html" %}
 {% block projectContent %}
 
-<h2>Project #1</h2>
-<div id="chart"></div>
+<style media="screen">
+    .user {
+        position: relative;
+        margin-bottom: 15px;
+        border: 2px solid black;
+        border-radius: 5px;
+        min-height: 100px;
+        overflow: hidden;
+    }
+    .user>* {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #end {
+        position: relative;
+        left: 88%;
+    }
+    #chosenYear {
+        position: absolute;
+        top: 5px;
+        left: 500px;
+    }
+</style>
+
+<h1>Project #1</h1>
+
+<div id="chart">
+    <div class="user" id="colleges">
+        <h3>Choose Colleges</h3>
+        <div class="cboxes">
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input college="KP" class="form-check-input" type="checkbox"> Engineering
+            </label>
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input class="form-check-input" type="checkbox"> 2
+            </label>
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input class="form-check-input" type="checkbox"> 3
+            </label>
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input class="form-check-input" type="checkbox"> 4
+            </label>
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input class="form-check-input" type="checkbox"> 5
+            </label>
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input class="form-check-input" type="checkbox"> 6
+            </label>
+            <label class="form-check-label col-lg-2 col-xs-3">
+            <input class="form-check-input" type="checkbox"> 7
+            </label>
+        </div>
+    </div>
+    <div class="user" id="years">
+        <h3>Choose Year</h3>
+        <h4 id="chosenYear">2015</h4>
+		<input id="sb" type="range" min=5 max=15 value=15>
+        <span id="start">2005</span>
+        <span id="end">2015</span>
+    </div>
+</div>
+
+<script>
+
+</script>
 
 <script src="web/vis.js"></script>
 

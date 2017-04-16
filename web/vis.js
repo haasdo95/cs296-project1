@@ -1,5 +1,22 @@
 "use strict";
 
+var checkedColleges = Object.create(null);
+
+$("#sb").on("change", function (event) {
+    $("#chosenYear").text(2000+Number($(this).val()));
+})
+
+$(".form-check-input").on("change", function (event) {
+    var chosen = event.target;
+    if (chosen.checked) { // newly checked
+        checkedColleges[chosen.getAttribute("college")] = true;
+        console.log(checkedColleges);
+    } else { // newly unchecked
+        delete checkedColleges[chosen.getAttribute("college")];
+        console.log(checkedColleges);
+    }
+})
+
 /* Boilerplate jQuery */
 $(function() {
   $.get("res/uiuc_demographics_2005_15.csv")
@@ -81,7 +98,7 @@ var visualize = function(data) {
               .style("width", width + margin.left + margin.right)
               .style("height", height + margin.top + margin.bottom)
               .append("g")
-              .attr("transform", "translate(" + (margin.left + width/2) + "," + (margin.top + height/2) + ")")
+              .attr("transform", "translate(" + (width/2) + "," + (height/2) + ")")
 
   // == Your code! :) ==
   svg.selectAll("ewww")
