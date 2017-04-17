@@ -36,14 +36,14 @@
         bottom: 5px;
     }
 	
-	[data-tooltip] {
+	.d3-tip{
 		position: relative;
 		display: inline-block;
 		-webkit-box-sizing: content-box;
 		-moz-box-sizing: content-box;
 		box-sizing: content-box;
 	}
-	[data-tooltip]:before, [data-tooltip]:after {
+	.d3-tip:before, .d3-tip:after {
 	  position: absolute;
 	  visibility: hidden;
 	  opacity: 0;
@@ -63,12 +63,10 @@
 		transition: all 0.2s linear;
 
 	}
-	[data-tooltip]:before {
-	  content: '';
+	.d3-tip:before {
 	  margin-bottom: -15px;
-
 	}
-	[data-tooltip]:after {
+	.d3-tip:after {
 	  height: auto;
 	  width: auto;
 	  line-height: 19px;
@@ -76,16 +74,15 @@
 	  text-align: left;
 	  padding: 11px 11px 11px 11px;
 	  font-size: 13px;
-	  content: attr(data-tooltip);
 	  background-color: #90EE90;
 	  color: #000000;
 	  
 	}
 	
-	[data-tooltip]:hover, [data-tooltip]:focus {
+	.d3-tip:hover, .d3-tip:focus {
 	  background-color: transparent;
 	}
-	[data-tooltip]:hover:before, [data-tooltip]:hover:after, [data-tooltip]:focus:before, [data-tooltip]:focus:after {
+	.d3-tip:hover:before, .d3-tip:hover:after, .d3-tip:focus:before, .d3-tip:focus:after {
 	  opacity: 1;
 	  visibility: visible;
 	    -webkit-transform: translate(-50%, -10px);
@@ -170,14 +167,11 @@
         <span id="start">2005</span>
         <span id="end">2015</span>
     </div>
-	<span class="simptip-position-top simptip-multiline simptip-fade" data-tooltip="I'm a multiline tooltip with movable effect for information">
-          text
-        </span>
 </div>
 
 <script>
 </script>
 
 <script src="web/vis.js"></script>
-
+<script src="web/tip.js"></script>
 {% endblock %}

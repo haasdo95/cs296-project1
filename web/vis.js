@@ -138,6 +138,7 @@ var visualize = function(data) {
      width = 1200 - margin.left - margin.right,
      height = 800; // hardcode
 
+	
   var svg = d3.select("#chart")
               .append("svg")
               .attr("width", width + margin.left + margin.right)
@@ -148,6 +149,15 @@ var visualize = function(data) {
               .attr("transform", "translate(" + (width/2) + "," + (height/2) + ")")
 
   // == Your code! :) ==
+  var tip = d3.tip()
+           .attr('class', 'd3-tip')
+           .html(function(d) {
+
+             return "<div>" + "Major Name: "+d.majorName  + "</div>"+
+					"<div>" + "Total: " + d.Total  + " students"+"</div>"
+           });
+           svg.call(tip);
+
   svg.selectAll("ewww")
      .data(majorCount)
      .enter()
@@ -191,6 +201,7 @@ var visualize = function(data) {
      })
 
      .on("mouseover",function(d,i){
+		 tip.show(d);
          d3.select(this).transition()
          .attr("r",function(d){
              var radius = Math.log2(d.Total)*4.0;
@@ -202,6 +213,7 @@ var visualize = function(data) {
         }
      )
      .on("mouseout",function(d,i){
+		 tip.hide(d,i);
          d3.select(this).transition()
          .attr("r",function(d){
              var radius = Math.log2(d.Total)*1.7;
