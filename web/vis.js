@@ -87,6 +87,7 @@ var visualize = function(data) {
   // groupData is now an array of arrays(a major)
   groupData.forEach(function (major) {
       var majorName = major[0]["Major Name"];
+      var college = major[0]["College"];
       var mj = {
           Total: 0,
           Male: 0,
@@ -97,7 +98,11 @@ var visualize = function(data) {
       }
       mj.majorName = majorName;
       mj.Female = mj.Total - mj.Male;
-      majorCount.push(mj);
+      mj.college = college;
+      mj.femalpre = mj.Female*1.0/mj.Total;
+      if(mj.Total!=0){
+        majorCount.push(mj);
+    }
   })
   majorCount = majorCount.sort(function (m1, m2) {
       return m1.Total - m2.Total
@@ -155,31 +160,77 @@ var visualize = function(data) {
          }
          return radLevel;
      })
-     .attr("r", function () {
-         return 10; // hardcode
+     .attr("r", function (d) {
+         var radius = Math.log2(d.Total)*1.7;
+         return Math.max(radius, 5);
      })
-     .transition()
-     .attr("cx", function (d, i) {
-         var radLevel = d3.select(this).attr("radLevel");
-         var radius = (-radLevel + 6) * 70; // real distance
-         return radius * Math.cos(thetaIncs[radLevel] * i);
-     })
-     .transition()
-     .attr("cy", function (d, i) {
-         var radLevel = d3.select(this).attr("radLevel");
-         var radius = (-radLevel + 5) * 70; // real distance
-         return radius * Math.sin(thetaIncs[radLevel] * i);
-     })
-     .attr("fill", function (d,i) {
+     .attr("fill-opacity",0.7)
 
+     .attr("fill", function (d) {
+         var maxpinkr = 255;
+         var maxpinkg = 100;
+         var maxpinkb = 150;
+
+         var maxbluer = 97;
+         var maxblueg = 168;
+         var maxblueb = 255;
+
+         var red = maxpinkr*d.femalpre+(1-d.femalpre)*maxbluer;
+         if(red>255){
+             red = 255;
+         }
+         var green = maxpinkg*d.femalpre+(1-d.femalpre)*maxblueg;
+         if(green>255) {
+             green = 255;
+         }
+         var blue = maxpinkb*d.femalpre+(1-d.femalpre)*maxblueb;
+         if(blue>255) {
+             blue = 255;
+         }
+         return d3.rgb(red, green, blue);
      })
 
-     for (var i = 6; i >= 0; i--) {
-     svg.append("ellipse")
-       .attr("cx",0)
-       .attr("cy",0)
-       .attr("rx",(width/2)*(i/6))
-       .attr("ry",(height/2)*(i/6)*6.5/6)
-       .attr("fill", "hsla(225, 100%, 50%, 0.1)");
-   }
+     .on("mouseover",function(d,i){
+         d3.select(this).transition()
+         .attr("r",function(d){
+             var radius = Math.log2(d.Total)*4.0;
+             return Math.max(radius, 10);
+         })
+         .attr("fill",function(d){
+             return d3.rgb(0,225,50);
+         });
+        }
+     )
+     .on("mouseout",function(d,i){
+         d3.select(this).transition()
+         .attr("r",function(d){
+             var radius = Math.log2(d.Total)*1.7;
+             return Math.max(radius, 5);
+         })
+         .attr("fill",function(d){
+             var maxpinkr = 255;
+             var maxpinkg = 100;
+             var maxpinkb = 150;
+
+             var maxbluer = 97;
+             var maxblueg = 168;
+             var maxblueb = 255;
+             return d3.rgb(maxpinkr*d.femalpre+(1-d.femalpre)*maxbluer
+                 ,maxpinkg*d.femalpre+(1-d.femalpre)*maxblueg
+                 , maxpinkb*d.femalpre+(1-d.femalpre)*maxblueb);
+             });
+            }
+        )
+        .transition()
+        .attr("cx", function (d, i) {
+            var radLevel = d3.select(this).attr("radLevel");
+            var radius = (-radLevel + 6) * 70; // real distance
+            return radius * Math.cos(thetaIncs[radLevel] * i);
+        })
+        .transition()
+        .attr("cy", function (d, i) {
+            var radLevel = d3.select(this).attr("radLevel");
+            var radius = (-radLevel + 5) * 70; // real distance
+            return radius * Math.sin(thetaIncs[radLevel] * i);
+        })
 };
