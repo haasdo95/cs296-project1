@@ -30,9 +30,9 @@ $(function() {
    .done(function (csvData) {
      data = d3.csvParse(csvData);
      var tempData = data.filter(function (d) { // filtered by year
-         return data["Fall"] == "2015";
+         return d["Fall"] == "2015";
      });
-     visualize(data);
+     visualize(tempData);
    })
   .fail(function(e) {
      alert("Failed to load CSV file!");
@@ -138,7 +138,7 @@ var visualize = function(data) {
      width = 1200 - margin.left - margin.right,
      height = 800; // hardcode
 
-	
+
   var svg = d3.select("#chart")
               .append("svg")
               .attr("width", width + margin.left + margin.right)
@@ -154,7 +154,8 @@ var visualize = function(data) {
            .html(function(d) {
 
              return "<div>" + "Major Name: "+d.majorName  + "</div>"+
-					"<div>" + "Total: " + d.Total  + " students"+"</div>"
+					"<div>" + "Total: " + d.Total  + " students"+"</div>"+
+                    "<div>" + "Female Precentage: "+Math.round(d.femalpre*100)+"%"+"</div>";
            });
            svg.call(tip);
 
