@@ -39,6 +39,14 @@ $(function() {
   });
 });
 
+$("#uncheck").on("click", function (event) {
+    console.log("Uncheck You!");
+    $(".form-check-input").prop("checked", false);
+    checkedColleges = {};
+    $("svg").remove();
+    visualize([]);
+})
+
 $("#sb").on("change", function (event) {
     $("#chosenYear").text(2000+Number($(this).val()));
     if (!data) {
@@ -122,13 +130,13 @@ var visualize = function(data) {
   }, [])
   // console.log(desiredNumOfMajor);
   // console.log(desiredNumOfMajorCumu);
-  var thresholds = [];
-  var thres = 0;
-  desiredNumOfMajor.forEach(function (num) {
-      thres += num;
-      thresholds.push(majorCount[thres-1].Total);
-  })
-  console.log(thresholds);
+  // var thresholds = [];
+  // var thres = 0;
+  // desiredNumOfMajor.forEach(function (num) {
+  //     thres += num;
+    //   thresholds.push(majorCount[thres-1].Total);
+  // })
+  // console.log(thresholds);
   var thetaIncs = desiredNumOfMajor.map(function (num) {
       return 2 * Math.PI/num;
   })
