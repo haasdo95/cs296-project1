@@ -154,7 +154,7 @@ var visualize = function(data) {
               .style("width", width + margin.left + margin.right)
               .style("height", height + margin.top + margin.bottom)
               .append("g")
-              .attr("transform", "translate(" + (width/2) + "," + (height/2) + ")")
+              .attr("transform", "translate(" + (width/2) + "," + (height/2 + 100) + ")")
 
   // == Your code! :) ==
   var tip = d3.tip()
@@ -166,6 +166,15 @@ var visualize = function(data) {
                     "<div>" + "Female Precentage: "+Math.round(d.femalpre*100)+"%"+"</div>";
            });
            svg.call(tip);
+
+  for (var i = 4; i >= -1; i--) {
+      svg.append("ellipse")
+               .attr("cx",0)
+               .attr("cy",0)
+               .attr("rx",(6-i)*70)
+               .attr("ry",(5-i)*70)
+               .attr("fill", "hsla(33, 100%, 50%, 0.1)");
+  }
 
   svg.selectAll("ewww")
      .data(majorCount)
