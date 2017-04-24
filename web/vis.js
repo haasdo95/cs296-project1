@@ -159,10 +159,12 @@ var visualize = function(data) {
   // == Your code! :) ==
   var tip = d3.tip()
            .attr('class', 'd3-tip')
+  	   .style("transition","all 0.2s linear")
            .html(function(d) {
 
              return "<div>" + "Major Name: "+d.majorName  + "</div>"+
 					"<div>" + "Total: " + d.Total  + " students"+"</div>"+
+		     "<div>" + "Female: " + d.Female  + " students"+"</div>"+
                     "<div>" + "Female Precentage: "+Math.round(d.femalpre*100)+"%"+"</div>";
            });
            svg.call(tip);
