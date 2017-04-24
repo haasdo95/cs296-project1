@@ -165,7 +165,7 @@ var visualize = function(data) {
              return "<div>" + "Major Name: "+d.majorName  + "</div>"+
 					"<div>" + "Total: " + d.Total  + " students"+"</div>"+
 		     "<div>" + "Female: " + d.Female  + " students"+"</div>"+
-                    "<div>" + "Female Precentage: "+Math.round(d.femalpre*100)+"%"+"</div>";
+                    "<div>" + "Female Percentage: "+Math.round(d.femalpre*100)+"%"+"</div>";
            });
            svg.call(tip);
 
