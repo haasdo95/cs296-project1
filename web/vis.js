@@ -152,9 +152,52 @@ var visualize = function(data) {
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
               .style("width", width + margin.left + margin.right)
-              .style("height", height + margin.top + margin.bottom)
-              .append("g")
-              .attr("transform", "translate(" + (width/2) + "," + (height/2 + 100) + ")")
+              .style("height", height + margin.top + margin.bottom);
+
+  var legendSize = [10, 15, 20, 25, 30];
+  var legend = svg.append("g")
+                  .attr("class", "legend")
+                  .attr("width", 100)
+                  .attr("height", 100);
+  legend.selectAll("ahhh")
+          .data(legendSize)
+          .enter()
+          .append("circle")
+          .attr("r", function (d) {
+              return d;
+          })
+          .attr("cx", function (d, i) {
+              return Math.pow(d,2);
+          })
+          .attr("cy", function (d) {
+              return 30;
+          })
+          .attr("fill", function () {
+              return "#adf442"
+          })
+  legend.selectAll("auuuu")
+        .data(legendSize)
+        .enter()
+        .append("text")
+          .text(function (d,i) {
+              if (i == 0) {
+                  return "Least popular"
+              }
+              if (i == 4) {
+                  return "Most popular"
+              }
+          })
+          .attr("x", function (d, i) {
+              return Math.pow(d,2) - 40;
+          })
+          .attr("y", function (d) {
+              return 70;
+          })
+          
+
+
+  var graph = svg.append("g")
+                 .attr("transform", "translate(" + (width/2) + "," + (height/2 + 100) + ")")
 
   // == Your code! :) ==
   var tip = d3.tip()
@@ -167,10 +210,10 @@ var visualize = function(data) {
 		     "<div>" + "Female: " + d.Female  + " students"+"</div>"+
                     "<div>" + "Female Percentage: "+Math.round(d.femalpre*100)+"%"+"</div>";
            });
-           svg.call(tip);
+           graph.call(tip);
 
   for (var i = 4; i >= -1; i--) {
-      svg.append("ellipse")
+      graph.append("ellipse")
                .attr("cx",0)
                .attr("cy",0)
                .attr("rx",(6-i)*70)
@@ -178,7 +221,7 @@ var visualize = function(data) {
                .attr("fill", "hsla(33, 100%, 50%, 0.1)");
   }
 
-  svg.selectAll("ewww")
+  graph.selectAll("ewww")
      .data(majorCount)
      .enter()
      .append("circle")
